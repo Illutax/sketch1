@@ -56,7 +56,7 @@ function draw(){
       else  rect(x[i]-r[i]/2,y[i]-r[i]/2,r[i],r[i]);
   }
 
-  w=slider.value()/2;
+  w=slider.value()/1.5;
 
   fill(0);
   textSize(20);
