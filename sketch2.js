@@ -36,9 +36,9 @@ function setup(){
   y[0]=height/2;
   r[0]=min(width,height)*0.9;
 
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
+  re[0]=random(50,200);
+  gr[0]=random(50,200);
+  bl[0]=random(50,200);
 
   frameRate(20);
 
@@ -108,9 +108,9 @@ function windowResized(){
   y[0]=height/2;
   r[0]=min(width,height)*0.9;
 
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
+  re[0]=random(50,200);
+  gr[0]=random(50,200);
+  bl[0]=random(50,200);
 
   n=1;
 }
@@ -120,9 +120,9 @@ function reset(){
   y[0]=height/2;
   r[0]=min(width,height)*0.9;
 
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
+  re[0]=random(50,200);
+  gr[0]=random(50,200);
+  bl[0]=random(50,200);
 
   n=1; 
 }
@@ -131,8 +131,8 @@ function overlap(){
   x[0]=width/2+random(-100,100);
   y[0]=height/2+random(-100,100);
   r[0]=min(width,height)*0.9;
-
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255); 
+  
+  re[0]=random(50,200);
+  gr[0]=random(50,200);
+  bl[0]=random(50,200);
 }
