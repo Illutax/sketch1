@@ -1,139 +1,128 @@
-let x=[],y=[],n=1,r=[],re=[],gr=[],bl=[];
-let w=20;
-let slider;
-let sel;
-let button1,button2;
-let url;
+let p=
+[
+    [
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,1],[1,0],[2,1],[1,3]],
+        [[3,1],[1,3],[3,1],[1,3]],
+        [[3,1],[1,3],[3,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,0],[0,0],[0,1],[1,2]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,1],[0,2],[3,2],[1,3]],
+        [[3,1],[1,0],[2,0],[2,3]],
+        [[3,1],[0,3],[0,2],[1,2]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,1],[0,2],[3,2],[1,3]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,1],[0,2],[3,2],[1,3]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,1],[1,2],[0,1],[1,2]],
+        [[3,1],[1,3],[3,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,1],[1,0],[2,0],[2,3]],
+        [[3,1],[0,3],[0,2],[1,2]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,1],[0,2],[3,2],[1,3]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,1],[1,0],[2,0],[2,3]],
+        [[3,1],[0,3],[0,2],[1,2]],
+        [[3,1],[1,0],[2,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,1],[1,0],[2,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,1],[1,0],[2,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,0],[2,0],[2,0],[2,3]],
+    ],[
+        [[0,1],[0,2],[0,2],[1,2]],
+        [[3,1],[1,0],[2,1],[1,3]],
+        [[3,1],[0,3],[3,2],[1,3]],
+        [[3,0],[2,0],[2,1],[1,3]],
+        [[0,0],[0,0],[3,1],[1,3]],
+        [[0,0],[0,0],[3,0],[2,3]],
+    ]
+    
+];
+
+let n=0;
 
 function setup(){
-  createCanvas(windowWidth,windowHeight);
-  slider=createSlider(0,100,50);
-  slider.position(30,40);
-
-  sel=createSelect();
-  sel.position(30,70);
-  sel.option('circle');
-  sel.option('square');
-  sel.style('width','120px');
-  sel.style('height','30px');
-
-  button1=createButton('reset');
-  button1.position(30,120);
-  button1.style('width','120px')
-  button1.style('height','30px');
-  button1.mousePressed(reset);
-
-  button2=createButton('overlap');
-  button2.position(30,170);
-  button2.style('width','120px')
-  button2.style('height','30px');
-  button2.mousePressed(overlap);
-
-  url=createA('https://t.co/hCCMOMXzHu?amp=1', 'home');
-  url.position(30,height-60);
-
-  x[0]=width/2;
-  y[0]=height/2;
-  r[0]=min(width,height)*0.9;
-
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
-
-  frameRate(20);
-
-  
-
+    createCanvas(windowWidth,windowHeight);
 }
 
 function draw(){
-  background("#f0f0f0");
+    background(255);
+    let m;
+    m=0.5+0.5*cos(PI+PI*((frameCount%100)/100));
+    if(frameCount%100==0)   n=(n+1)%10;
+    disp(100,100,100,n,(n+1)%10,m);
 
-  noStroke();
-  for(let i=0;i<n;i++){
-    fill(re[i],gr[i],bl[i]);
-    if(sel.value()=="circle") ellipse(x[i],y[i],r[i],r[i]);
-      else  rect(x[i]-r[i]/2,y[i]-r[i]/2,r[i],r[i]);
-  }
-
-  w=slider.value()/2;
-
-  fill(0);
-  textSize(20);
-  text("color range",20,30);
+    /*disp(100,700,100,3,4,mouseX/width);   //move mouse left to right*/ 
 }
 
-function mouseMoved(){
-  for(let i=0;i<n;i++){
-    if(dist(mouseX,mouseY,x[i],y[i])<r[i]/2&&r[i]>min(width,height)/50){
-      x[i]-=r[i]/4;
-      y[i]-=r[i]/4;
-      r[i]/=2
-
-      r[n]=r[n+1]=r[n+2]=r[i];
-
-      x[n]=x[i]+r[i];
-      y[n]=y[i];
-      re[n]=re[i]+random(-w,w);
-      gr[n]=gr[i]+random(-w,w);
-      bl[n]=bl[i]+random(-w,w);
-
-      x[n+1]=x[i]+r[i];
-      y[n+1]=y[i]+r[i];
-      re[n+1]=re[i]+random(-w,w);
-      gr[n+1]=gr[i]+random(-w,w);
-      bl[n+1]=bl[i]+random(-w,w);
-
-      x[n+2]=x[i];
-      y[n+2]=y[i]+r[i];
-      re[n+2]=re[i]+random(-w,w);
-      gr[n+2]=gr[i]+random(-w,w);
-      bl[n+2]=bl[i]+random(-w,w);
-
-      re[i]+=random(-w,w);
-      gr[i]+=random(-w,w);
-      bl[i]+=random(-w,w);
-
-      n+=3;
-      
-      break;
+function disp(r,x,y,n1,n2,m){   //n1,n2:0~9,m:0~1
+    noStroke();
+    for(let i=0;i<4;i++)    for(let j=0;j<6;j++){
+        fill(220);
+        circle(x+r*i,y+r*j,r);
+        fill('#ff7300');
+        arc(x+r*i,y+r*j,r,r,
+            PI/2*rot(p[n1][j][i],p[n2][j][i],m)[0],PI/2*rot(p[n1][j][i],p[n2][j][i],m)[1]);
     }
-
-  }
 }
 
-function windowResized(){
-  resizeCanvas(windowWidth,windowHeight);
-  x[0]=width/2;
-  y[0]=height/2;
-  r[0]=min(width,height)*0.9;
+function rot(a,b,c){
+    let result=new Array(2);
+    let d=pis(b[0],b[1])-pis(a[0],a[1]);
+    let f=0,g=0;
 
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
-
-  n=1;
+    if(b[0]==0&&b[1]==0){
+        if(a[1]<a[0])   f=4;
+        result=[a[0]+(a[1]+f-a[0])/2*c,a[1]+f+(a[0]-a[1]-f)/2*c];
+    }else if(a[0]==0&&a[1]==0){
+        if(b[1]<b[0])   f=4;
+        result=[(b[0]+b[1]+f)/2*(1-c)+c*b[0],(b[0]+b[1]+f)/2*(1-c)+(f+b[1])*c];
+    }else{
+        if(a[0]==0&&b[0]==3)    f=4;
+        if(b[0]==0&&a[0]==3)    g=4;    
+        result[0]=(a[0]+f)*(1-c)+(b[0]+g)*c;
+        result[1]=result[0]+a[1]-(a[0]+f)+d*c;
+    }
+    return result;
 }
 
-function reset(){
-  x[0]=width/2;
-  y[0]=height/2;
-  r[0]=min(width,height)*0.9;
-
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255);
-
-  n=1; 
-}
-
-function overlap(){
-  x[0]=width/2+random(-100,100);
-  y[0]=height/2+random(-100,100);
-  r[0]=min(width,height)*0.9;
-
-  re[0]=random(255);
-  gr[0]=random(255);
-  bl[0]=random(255); 
+function pis(a,b){
+    if(a<b) return b-a;
+    else return (4-a)+b;
 }
 
